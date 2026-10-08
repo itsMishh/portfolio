@@ -88,7 +88,9 @@ const str = 'text-ink';
                 <h3 class="text-base font-semibold">{job.title}</h3>
                 <span class="shrink-0 font-mono text-xs text-ash">{job.when}</span>
               </div>
-              <p class="text-sm leading-relaxed text-ink-light">{job.body}</p>
+              <ul class="mt-3 grid list-disc gap-1.5 pl-5 text-sm leading-relaxed text-ink-light marker:text-ash">
+                {job.bullets.map((b) => <li>{b}</li>)}
+              </ul>
             </div>
           ))
         }

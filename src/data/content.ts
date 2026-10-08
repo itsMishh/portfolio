@@ -9,7 +9,14 @@ export const experience = [
   {
     title: 'Software Developer · IIMSWISS Corp.',
     when: 'Jun 2025 – Present',
-    body: 'Develop and maintain enterprise business applications in C#, ASP.NET MVC, and Microsoft SQL Server, owning features end to end from requirements gathering to production release. Design and deliver features and APIs for the team within an Agile workflow on Azure DevOps.',
+    bullets: [
+      'Develop and maintain enterprise business applications in C#, ASP.NET MVC and Microsoft SQL Server, owning features end to end from requirements to production release.',
+      'Design and build REST APIs and third-party integrations that connect internal systems with external platforms, including financial and accounting services.',
+      'Apply Clean Architecture and sound design principles across new and existing code to improve maintainability and reduce technical debt.',
+      'Resolve production issues and bugs, tracing root causes through code and data.',
+      'Write and tune SQL Server queries and stored procedures, and document features and APIs for the team.',
+      'Work in Agile sprints using Azure DevOps Server (TFS), Git and GitFlow, with code reviews and pull requests.',
+    ],
   },
 ];
 
@@ -17,8 +24,8 @@ export const skills: Record<string, string[]> = {
   Languages: ['C#', 'SQL (T-SQL)'],
   Frameworks: ['.NET', 'ASP.NET MVC', 'REST APIs'],
   Data: ['Microsoft SQL Server'],
-  SDLC: ['Clean Architecture', 'Requirements Gathering', 'Technical Documentation'],
-  Tools: ['Azure DevOps (TFS)', 'Git', 'GitFlow', 'Agile'],
+  SDLC: ['Clean Architecture', 'Unit Testing', 'Requirements Gathering', 'Technical Documentation'],
+  Tools: ['Azure DevOps (TFS)', 'Git', 'GitFlow', 'NuGet', 'GitHub Copilot', 'Agile'],
 };
 
 export const education = [
