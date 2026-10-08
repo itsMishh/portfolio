@@ -1,13 +1,16 @@
 ---
 import '../styles/global.css';
+import SectionHeading from '../components/SectionHeading.astro';
 import { profile, experience, skills, education } from '../data/content';
 
 const title = `${profile.name} — Software Developer`;
 const description =
   'Software developer in the Toronto area building enterprise applications in C#, .NET, ASP.NET MVC and SQL Server.';
 
-const h2 = 'font-mono text-[.8rem] font-bold uppercase tracking-[.1em] text-muted border-b border-line pb-3';
-const when = 'font-mono text-[.85rem] text-muted whitespace-nowrap tabular-nums';
+// Code-block token colours from the Figma design
+const kw = 'text-ash';
+const prop = 'text-ink-light';
+const str = 'text-ink';
 ---
 
 <!doctype html>
@@ -20,137 +23,169 @@ const when = 'font-mono text-[.85rem] text-muted whitespace-nowrap tabular-nums'
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#0b6b66" />
+    <meta name="theme-color" content="#f5f0e8" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
     />
   </head>
-  <body class="px-5">
-    <main class="mx-auto grid max-w-[760px] gap-12 py-8 sm:gap-16 sm:py-14">
-      <header class="grid gap-7">
-        <span class="font-mono text-[.78rem] font-medium uppercase tracking-[.08em] text-accent">
-          {profile.eyebrow}
-        </span>
-        <h1 class="text-[clamp(2.6rem,8vw,4.4rem)] font-extrabold leading-none tracking-[-.03em] text-balance">
-          {profile.name}
-        </h1>
-        <p class="max-w-[60ch] text-[1.15rem] text-muted">
-          I build enterprise applications in <strong class="font-medium text-fg">C#, .NET and ASP.NET MVC</strong>
-          on <strong class="font-medium text-fg">Microsoft SQL Server</strong>, connected through REST APIs. I work in an
-          Agile team on Azure DevOps with Git and GitFlow, and I care about clean architecture and code the next
-          developer can read.
+  <body class="min-h-screen">
+    <div class="mx-auto max-w-2xl px-6 py-16 md:py-24">
+      <!-- Corner doodle -->
+      <div class="mb-2 flex justify-end opacity-60">
+        <svg width="48" height="48" viewBox="0 0 48 48" class="text-ash-light" aria-hidden="true">
+          <path d="M6 6 C6 6 8 4 12 5 C16 6 20 8 24 10 C28 12 34 14 40 12" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-dasharray="3 2" />
+          <path d="M6 6 C6 8 4 14 5 20 C6 26 8 32 6 40" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-dasharray="3 2" />
+          <circle cx="6" cy="6" r="2" fill="currentColor" opacity="0.4" />
+        </svg>
+      </div>
+
+      <header class="mb-14">
+        <p class="mb-3 font-mono text-sm tracking-[0.18em] text-ash uppercase">{profile.eyebrow}</p>
+        <h1 class="mb-5 font-display text-7xl leading-none font-bold text-ink md:text-8xl">{profile.name}</h1>
+
+        <svg viewBox="0 0 400 6" class="w-full max-w-md" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0,3 C20,1 40,5 60,3 C80,1 100,5 120,3 C140,1 160,5 180,3 C200,1 220,5 240,3 C260,1 280,5 300,3 C320,1 340,5 360,3 C380,1 400,3 400,3" stroke="#4A4844" stroke-width="1.2" fill="none" stroke-linecap="round" />
+        </svg>
+
+        <p class="mt-6 max-w-[480px] text-base leading-relaxed text-ink-light md:text-lg">
+          I build enterprise applications in
+          <span class="relative inline-block">
+            C#, .NET and ASP.NET MVC
+            <svg viewBox="0 0 100 4" class="absolute -bottom-1 left-0 w-full" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,2 C15,0.5 30,3.5 50,2 C70,0.5 85,3.5 100,2" stroke="#1A1916" stroke-width="1.5" fill="none" stroke-linecap="round" />
+            </svg>
+          </span>{' '}on Microsoft SQL Server, connected through REST APIs. I work in an Agile team on Azure DevOps with Git and
+          GitFlow, and I care about clean architecture and code the next developer can read.
         </p>
-
-<pre class="overflow-x-auto rounded-[10px] bg-code-bg p-[18px] font-mono text-[.8rem] leading-[1.7] text-code-fg sm:p-6 sm:text-[.88rem]" aria-label="Profile written as a C# object initializer"><code><span class="text-tk-key">var</span> misha = <span class="text-tk-key">new</span> <span class="text-tk-type">Developer</span>
-&#123;
-    Name     = <span class="text-tk-str">"Misha Punj"</span>,
-    Role     = <span class="text-tk-str">"Software Developer @ IIMSWISS Corp."</span>,
-    Stack    = [<span class="text-tk-str">"C#"</span>, <span class="text-tk-str">".NET"</span>, <span class="text-tk-str">"ASP.NET MVC"</span>, <span class="text-tk-str">"SQL Server"</span>],
-    Tools    = [<span class="text-tk-str">"Azure DevOps (TFS)"</span>, <span class="text-tk-str">"Git"</span>, <span class="text-tk-str">"GitFlow"</span>],
-    Location = <span class="text-tk-str">"Oakville, ON"</span>
-&#125;;  <span class="text-tk-dim">// open to software engineering roles</span>
-
-<span class="text-tk-dim">// off the clock: debugging French irregular verbs (DELF A2, Nov 2026).</span>
-<span class="text-tk-dim">// the C# compiler is far more forgiving.</span></code></pre>
-
-        <nav class="flex flex-wrap items-center gap-x-6 gap-y-3 font-medium" aria-label="Contact">
-          <span class="inline-flex min-w-0 items-center gap-2.5 [overflow-wrap:anywhere]">
-            <a class="text-accent" href={`mailto:${profile.email}`}>{profile.email}</a>
-            <button
-              type="button"
-              id="copy-email"
-              data-email={profile.email}
-              class="cursor-pointer rounded-md border border-line bg-surface px-[9px] py-1.5 font-mono text-[.75rem] font-medium leading-none text-fg hover:border-accent"
-            >
-              Copy
-            </button>
-          </span>
-          <a class="text-accent" href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-        </nav>
       </header>
 
-      <section class="grid gap-5" aria-labelledby="exp">
-        <h2 id="exp" class={h2}>Experience</h2>
+      <section class="mb-14" aria-label="Developer identity code snippet">
+        <div class="overflow-x-auto rounded-sm border-[1.5px] border-dashed border-ash-light bg-cream-dark p-5 md:p-6">
+<pre class="font-mono text-xs leading-relaxed whitespace-pre text-ink md:text-sm"><span class={kw}>var</span> misha = <span class={kw}>new</span> Developer
+&#123;
+    <span class={prop}>Name</span>     = <span class={str}>"Misha Punj"</span>,
+    <span class={prop}>Role</span>     = <span class={str}>"Software Developer @ IIMSWISS Corp."</span>,
+    <span class={prop}>Stack</span>    = [<span class={str}>"C#"</span>, <span class={str}>".NET"</span>, <span class={str}>"ASP.NET MVC"</span>, <span class={str}>"SQL Server"</span>],
+    <span class={prop}>Tools</span>    = [<span class={str}>"Azure DevOps (TFS)"</span>, <span class={str}>"Git"</span>, <span class={str}>"GitFlow"</span>],
+    <span class={prop}>Location</span> = <span class={str}>"Oakville, ON"</span>
+&#125;;  <span class={kw}>// open to software engineering roles</span>
+
+<span class={kw}>// off the clock: debugging French irregular verbs.</span>
+<span class={kw}>// the C# compiler is far more forgiving.</span></pre>
+        </div>
+      </section>
+
+      <section class="mb-14">
+        <SectionHeading number="01" label="Experience" />
         {
           experience.map((job) => (
-            <article class="grid gap-2.5">
-              <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <h3 class="text-xl font-bold leading-snug">
-                  {job.title} <span class="text-accent">· {job.org}</span>
-                </h3>
-                <span class={when}>{job.when}</span>
+            <div class="mt-6">
+              <div class="mb-2 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                <h3 class="text-base font-semibold">{job.title}</h3>
+                <span class="shrink-0 font-mono text-xs text-ash">{job.when}</span>
               </div>
-              <ul class="grid max-w-[68ch] list-disc gap-1.5 pl-[1.1em] marker:text-accent">
-                {job.bullets.map((b) => <li>{b}</li>)}
-              </ul>
-            </article>
+              <p class="text-sm leading-relaxed text-ink-light">{job.body}</p>
+            </div>
           ))
         }
       </section>
 
-      <section class="grid gap-5" aria-labelledby="skills">
-        <h2 id="skills" class={h2}>Skills</h2>
-        <dl class="grid gap-x-6 gap-y-1.5 sm:grid-cols-[9rem_1fr] sm:gap-y-3.5">
+      <section class="mb-14">
+        <SectionHeading number="02" label="Skills" />
+        <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {
-            Object.entries(skills).map(([group, items]) => (
-              <>
-                <dt class="font-mono text-[.85rem] font-medium leading-[1.9] text-muted">{group}</dt>
-                <dd class="mb-2.5 flex min-w-0 flex-wrap gap-1.5 sm:mb-0">
-                  {items.map((s) => (
-                    <span class="rounded-md border border-line bg-surface px-2.5 py-[7px] text-[.85rem] leading-none">
-                      {s}
+            Object.entries(skills).map(([category, items]) => (
+              <div>
+                <p class="mb-3 font-mono text-xs tracking-[0.14em] text-ash uppercase">{category}</p>
+                <div class="flex flex-wrap gap-2">
+                  {items.map((skill) => (
+                    <span class="rounded-sm border-[1.5px] border-dashed border-ash-light px-2.5 py-1 text-xs text-ink">
+                      {skill}
                     </span>
                   ))}
-                </dd>
-              </>
-            ))
-          }
-        </dl>
-      </section>
-
-      <section class="grid gap-5" aria-labelledby="edu">
-        <h2 id="edu" class={h2}>Education &amp; credentials</h2>
-        <div class="grid gap-[18px]">
-          {
-            education.map((e) => (
-              <article class="grid gap-2.5">
-                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 class="text-xl font-bold leading-snug">
-                    {e.title} <span class="text-accent">· {e.org}</span>
-                  </h3>
-                  <span class={when}>{e.when}</span>
                 </div>
-                {e.body && <p class="max-w-[68ch] text-muted">{e.body}</p>}
-              </article>
+              </div>
             ))
           }
         </div>
       </section>
 
-      <footer class="text-[.9rem] text-muted">
-        Reach me at <a class="text-accent" href={`mailto:${profile.email}`}>{profile.email}</a> or
-        <a class="text-accent" href={profile.linkedin} target="_blank" rel="noopener noreferrer"> on LinkedIn</a>.
+      <section class="mb-14">
+        <SectionHeading number="03" label="Education & Credentials" />
+        <div class="mt-6 space-y-8">
+          {
+            education.map((e) => (
+              <div class="border-l-[1.5px] border-dashed border-ash-light pl-4">
+                <div class="mb-1 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                  <h3 class="text-base font-semibold">{e.degree}</h3>
+                  <span class="shrink-0 font-mono text-xs text-ash">{e.period}</span>
+                </div>
+                <p class="mb-1 text-sm font-medium text-ink-light">{e.school}</p>
+                {e.note && <p class="text-sm leading-relaxed text-ash">{e.note}</p>}
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <SectionHeading number="04" label="Reach me" />
+        <div class="mt-6 flex flex-col gap-4 sm:flex-row">
+          <button
+            id="copy-email"
+            type="button"
+            data-email={profile.email}
+            class="flex cursor-pointer items-center gap-2 font-mono text-sm text-ink transition-opacity hover:opacity-70"
+            aria-label="Copy email address"
+          >
+            <span data-dot class="h-1.5 w-1.5 shrink-0 rounded-full bg-ink transition-colors duration-200"></span>
+            <span data-label>{profile.email}</span>
+          </button>
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 font-mono text-sm text-ink transition-opacity hover:opacity-70"
+          >
+            <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-ink"></span>
+            LinkedIn
+            <svg width="14" height="14" viewBox="0 0 14 14" class="ml-1 inline-block translate-y-px" aria-hidden="true">
+              <path d="M2 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <footer class="mt-8 border-t-[1.5px] border-dashed border-ash-light pt-8">
+        <div class="flex items-center justify-between">
+          <p class="font-mono text-xs text-ash">© {new Date().getFullYear()} {profile.name}</p>
+          <p class="font-mono text-xs text-ash-light">more projects soon ✦</p>
+        </div>
       </footer>
-    </main>
+    </div>
 
     <script>
       const btn = document.getElementById('copy-email');
-      const flash = (label: string) => {
-        if (!btn) return;
-        btn.textContent = label;
-        setTimeout(() => (btn.textContent = 'Copy'), 1600);
-      };
+      const label = btn?.querySelector<HTMLElement>('[data-label]');
+      const dot = btn?.querySelector<HTMLElement>('[data-dot]');
       btn?.addEventListener('click', async () => {
+        if (!label || !dot) return;
+        const email = btn.dataset.email ?? '';
         try {
-          await navigator.clipboard.writeText(btn.dataset.email ?? '');
-          flash('Copied');
+          await navigator.clipboard.writeText(email);
+          label.textContent = 'copied!';
         } catch {
-          flash('Failed');
+          label.textContent = 'copy failed';
         }
+        dot.classList.replace('bg-ink', 'bg-ash');
+        setTimeout(() => {
+          label.textContent = email;
+          dot.classList.replace('bg-ash', 'bg-ink');
+        }, 2000);
       });
     </script>
   </body>

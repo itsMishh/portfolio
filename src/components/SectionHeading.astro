@@ -1,0 +1,12 @@
+---
+interface Props {
+  number: string;
+  label: string;
+}
+const { number, label } = Astro.props;
+---
+
+<div class="flex items-baseline gap-3">
+  <span class="font-mono text-xs text-ash">{number}</span>
+  <h2 class="font-display text-3xl leading-none font-semibold text-ink md:text-4xl">{label}</h2>
+</div>
