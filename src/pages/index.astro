@@ -1,0 +1,157 @@
+---
+import '../styles/global.css';
+import { profile, experience, skills, education } from '../data/content';
+
+const title = `${profile.name} — Software Developer`;
+const description =
+  'Software developer in the Toronto area building enterprise applications in C#, .NET, ASP.NET MVC and SQL Server.';
+
+const h2 = 'font-mono text-[.8rem] font-bold uppercase tracking-[.1em] text-muted border-b border-line pb-3';
+const when = 'font-mono text-[.85rem] text-muted whitespace-nowrap tabular-nums';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0b6b66" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+  </head>
+  <body class="px-5">
+    <main class="mx-auto grid max-w-[760px] gap-12 py-8 sm:gap-16 sm:py-14">
+      <header class="grid gap-7">
+        <span class="font-mono text-[.78rem] font-medium uppercase tracking-[.08em] text-accent">
+          {profile.eyebrow}
+        </span>
+        <h1 class="text-[clamp(2.6rem,8vw,4.4rem)] font-extrabold leading-none tracking-[-.03em] text-balance">
+          {profile.name}
+        </h1>
+        <p class="max-w-[60ch] text-[1.15rem] text-muted">
+          I build enterprise applications in <strong class="font-medium text-fg">C#, .NET and ASP.NET MVC</strong>
+          on <strong class="font-medium text-fg">Microsoft SQL Server</strong>, connected through REST APIs. I work in an
+          Agile team on Azure DevOps with Git and GitFlow, and I care about clean architecture and code the next
+          developer can read.
+        </p>
+
+<pre class="overflow-x-auto rounded-[10px] bg-code-bg p-[18px] font-mono text-[.8rem] leading-[1.7] text-code-fg sm:p-6 sm:text-[.88rem]" aria-label="Profile written as a C# object initializer"><code><span class="text-tk-key">var</span> misha = <span class="text-tk-key">new</span> <span class="text-tk-type">Developer</span>
+&#123;
+    Name     = <span class="text-tk-str">"Misha Punj"</span>,
+    Role     = <span class="text-tk-str">"Software Developer @ IIMSWISS Corp."</span>,
+    Stack    = [<span class="text-tk-str">"C#"</span>, <span class="text-tk-str">".NET"</span>, <span class="text-tk-str">"ASP.NET MVC"</span>, <span class="text-tk-str">"SQL Server"</span>],
+    Tools    = [<span class="text-tk-str">"Azure DevOps (TFS)"</span>, <span class="text-tk-str">"Git"</span>, <span class="text-tk-str">"GitFlow"</span>],
+    Location = <span class="text-tk-str">"Oakville, ON"</span>
+&#125;;  <span class="text-tk-dim">// open to software engineering roles</span>
+
+<span class="text-tk-dim">// off the clock: debugging French irregular verbs (DELF A2, Nov 2026).</span>
+<span class="text-tk-dim">// the C# compiler is far more forgiving.</span></code></pre>
+
+        <nav class="flex flex-wrap items-center gap-x-6 gap-y-3 font-medium" aria-label="Contact">
+          <span class="inline-flex min-w-0 items-center gap-2.5 [overflow-wrap:anywhere]">
+            <a class="text-accent" href={`mailto:${profile.email}`}>{profile.email}</a>
+            <button
+              type="button"
+              id="copy-email"
+              data-email={profile.email}
+              class="cursor-pointer rounded-md border border-line bg-surface px-[9px] py-1.5 font-mono text-[.75rem] font-medium leading-none text-fg hover:border-accent"
+            >
+              Copy
+            </button>
+          </span>
+          <a class="text-accent" href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        </nav>
+      </header>
+
+      <section class="grid gap-5" aria-labelledby="exp">
+        <h2 id="exp" class={h2}>Experience</h2>
+        {
+          experience.map((job) => (
+            <article class="grid gap-2.5">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 class="text-xl font-bold leading-snug">
+                  {job.title} <span class="text-accent">· {job.org}</span>
+                </h3>
+                <span class={when}>{job.when}</span>
+              </div>
+              <ul class="grid max-w-[68ch] list-disc gap-1.5 pl-[1.1em] marker:text-accent">
+                {job.bullets.map((b) => <li>{b}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </section>
+
+      <section class="grid gap-5" aria-labelledby="skills">
+        <h2 id="skills" class={h2}>Skills</h2>
+        <dl class="grid gap-x-6 gap-y-1.5 sm:grid-cols-[9rem_1fr] sm:gap-y-3.5">
+          {
+            Object.entries(skills).map(([group, items]) => (
+              <>
+                <dt class="font-mono text-[.85rem] font-medium leading-[1.9] text-muted">{group}</dt>
+                <dd class="mb-2.5 flex min-w-0 flex-wrap gap-1.5 sm:mb-0">
+                  {items.map((s) => (
+                    <span class="rounded-md border border-line bg-surface px-2.5 py-[7px] text-[.85rem] leading-none">
+                      {s}
+                    </span>
+                  ))}
+                </dd>
+              </>
+            ))
+          }
+        </dl>
+      </section>
+
+      <section class="grid gap-5" aria-labelledby="edu">
+        <h2 id="edu" class={h2}>Education &amp; credentials</h2>
+        <div class="grid gap-[18px]">
+          {
+            education.map((e) => (
+              <article class="grid gap-2.5">
+                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h3 class="text-xl font-bold leading-snug">
+                    {e.title} <span class="text-accent">· {e.org}</span>
+                  </h3>
+                  <span class={when}>{e.when}</span>
+                </div>
+                {e.body && <p class="max-w-[68ch] text-muted">{e.body}</p>}
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <footer class="text-[.9rem] text-muted">
+        Reach me at <a class="text-accent" href={`mailto:${profile.email}`}>{profile.email}</a> or
+        <a class="text-accent" href={profile.linkedin} target="_blank" rel="noopener noreferrer"> on LinkedIn</a>.
+      </footer>
+    </main>
+
+    <script>
+      const btn = document.getElementById('copy-email');
+      const flash = (label: string) => {
+        if (!btn) return;
+        btn.textContent = label;
+        setTimeout(() => (btn.textContent = 'Copy'), 1600);
+      };
+      btn?.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.email ?? '');
+          flash('Copied');
+        } catch {
+          flash('Failed');
+        }
+      });
+    </script>
+  </body>
+</html>
