@@ -1,11 +1,20 @@
 ---
-import '../styles/global.css';
+import Base from '../layouts/Base.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import Icon from '../components/Icon.astro';
 import { profile, experience, skills, education } from '../data/content';
 
-const title = `${profile.name} — Software Developer`;
+const title = `${profile.name} — Software Developer (.NET)`;
 const description =
-  'Software developer in the Toronto area building enterprise applications in C#, .NET, ASP.NET MVC and SQL Server.';
+  'Software developer in the Toronto area building enterprise applications in C#, .NET, ASP.NET MVC and SQL Server, with REST integrations for financial and accounting platforms.';
+
+const links = [
+  { label: 'GitHub', href: profile.github, icon: 'github' },
+  { label: 'LinkedIn', href: profile.linkedin, icon: 'linkedin' },
+  ...(profile.resume ? [{ label: 'Résumé', href: profile.resume, icon: 'resume' }] : []),
+] as const;
+// Hero row also gets email; Reach me shows the address as copyable text instead
+const heroLinks = [{ label: 'Email', href: `mailto:${profile.email}`, icon: 'email' }, ...links] as const;
 
 // Code-block token colours from the Figma design
 const kw = 'text-ash';
@@ -13,26 +22,7 @@ const prop = 'text-ink-light';
 const str = 'text-ink';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#f5f0e8" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
-    />
-  </head>
-  <body class="min-h-screen">
+<Base title={title} description={description}>
     <div class="mx-auto max-w-2xl px-6 py-16 md:py-24">
       <!-- Corner doodle -->
       <div class="mb-2 flex justify-end opacity-60">
@@ -52,7 +42,7 @@ const str = 'text-ink';
         </svg>
 
         <p class="mt-6 max-w-[480px] text-base leading-relaxed text-ink-light md:text-lg">
-          I build enterprise applications in
+          I build enterprise applications in{' '}
           <span class="relative inline-block">
             C#, .NET and ASP.NET MVC
             <svg viewBox="0 0 100 4" class="absolute -bottom-1 left-0 w-full" preserveAspectRatio="none" aria-hidden="true">
@@ -61,6 +51,23 @@ const str = 'text-ink';
           </span>{' '}on Microsoft SQL Server, connected through REST APIs. I work in an Agile team on Azure DevOps with Git and
           GitFlow, and I care about clean architecture and code the next developer can read.
         </p>
+
+        <nav class="mt-6 flex items-center gap-5" aria-label="Profiles">
+          {
+            heroLinks.map((l) => (
+              <a
+                href={l.href}
+                target={l.icon === 'email' ? undefined : '_blank'}
+                rel={l.icon === 'email' ? undefined : 'noopener noreferrer'}
+                aria-label={l.label}
+                title={l.icon === 'email' ? profile.email : l.label}
+                class="text-ink-light transition-colors hover:text-ink"
+              >
+                <Icon name={l.icon} size={22} />
+              </a>
+            ))
+          }
+        </nav>
       </header>
 
       <section class="mb-14" aria-label="Developer identity code snippet">
@@ -71,7 +78,7 @@ const str = 'text-ink';
     <span class={prop}>Role</span>     = <span class={str}>"Software Developer @ IIMSWISS Corp."</span>,
     <span class={prop}>Stack</span>    = [<span class={str}>"C#"</span>, <span class={str}>".NET"</span>, <span class={str}>"ASP.NET MVC"</span>, <span class={str}>"SQL Server"</span>],
     <span class={prop}>Tools</span>    = [<span class={str}>"Azure DevOps (TFS)"</span>, <span class={str}>"Git"</span>, <span class={str}>"GitFlow"</span>],
-    <span class={prop}>Location</span> = <span class={str}>"Oakville, ON"</span>
+    <span class={prop}>Location</span> = <span class={str}>"{profile.location}"</span>
 &#125;;  <span class={kw}>// open to software engineering roles</span>
 
 <span class={kw}>// off the clock: debugging French irregular verbs.</span>
@@ -136,7 +143,7 @@ const str = 'text-ink';
 
       <section class="mb-10">
         <SectionHeading number="04" label="Reach me" />
-        <div class="mt-6 flex flex-col gap-4 sm:flex-row">
+        <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
           <button
             id="copy-email"
             type="button"
@@ -147,26 +154,27 @@ const str = 'text-ink';
             <span data-dot class="h-1.5 w-1.5 shrink-0 rounded-full bg-ink transition-colors duration-200"></span>
             <span data-label>{profile.email}</span>
           </button>
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 font-mono text-sm text-ink transition-opacity hover:opacity-70"
-          >
-            <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-ink"></span>
-            LinkedIn
-            <svg width="14" height="14" viewBox="0 0 14 14" class="ml-1 inline-block translate-y-px" aria-hidden="true">
-              <path d="M2 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
+          <div class="flex items-center gap-5">
+            {
+              links.map((l) => (
+                <a
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={l.label}
+                  title={l.label}
+                  class="flex items-center text-ink-light transition-colors hover:text-ink"
+                >
+                  <Icon name={l.icon} size={20} />
+                </a>
+              ))
+            }
+          </div>
         </div>
       </section>
 
       <footer class="mt-8 border-t-[1.5px] border-dashed border-ash-light pt-8">
-        <div class="flex items-center justify-between">
-          <p class="font-mono text-xs text-ash">© {new Date().getFullYear()} {profile.name}</p>
-          <p class="font-mono text-xs text-ash-light">more projects soon</p>
-        </div>
+        <p class="font-mono text-xs text-ash">© {new Date().getFullYear()} {profile.name}</p>
       </footer>
     </div>
 
@@ -190,5 +198,4 @@ const str = 'text-ink';
         }, 2000);
       });
     </script>
-  </body>
-</html>
+</Base>

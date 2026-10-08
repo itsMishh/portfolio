@@ -1,8 +1,12 @@
 export const profile = {
   name: 'Misha Punj',
-  eyebrow: 'Software Developer (.NET) · Toronto area',
+  eyebrow: 'Software Developer (.NET) · Oakville, ON (Toronto area)',
+  location: 'Oakville, ON (Toronto area)',
   email: 'itsmisha101@gmail.com',
   linkedin: 'https://www.linkedin.com/in/misha-punj',
+  github: 'https://github.com/itsMishh',
+  resume: '/resume',
+  resumePdf: '/Misha_Punj_Resume.pdf',
 };
 
 export const experience = [
