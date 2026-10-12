@@ -20,7 +20,7 @@ export const experience = [
       'Perform production support, incident analysis and troubleshooting, identifying root causes across application code, APIs and SQL Server data.',
       'Develop, optimize and maintain SQL Server queries, stored procedures and relational database components to support application functionality and performance.',
       'Write unit tests and use AI coding tools (Claude Code, OpenAI Codex, GitHub Copilot) to accelerate development, debugging and code reviews.',
-      'Collaborate in an Agile/Scrum environment using Azure DevOps Server (TFS), Git and GitFlow, including pull requests and code reviews.',
+      'Collaborate in an Agile/Scrum environment using Git and GitFlow, including pull requests and code reviews.',
       'Create and maintain technical documentation for application features, APIs, integrations and implementation processes.',
     ],
   },
@@ -30,7 +30,7 @@ export const skills: Record<string, string[]> = {
   Languages: ['C#', 'SQL (T-SQL)'],
   'Frameworks & APIs': ['.NET', 'ASP.NET MVC', 'REST APIs', 'Web Services'],
   Databases: ['Microsoft SQL Server', 'T-SQL', 'Stored Procedures', 'Relational Database Design'],
-  'DevOps & Version Control': ['Azure DevOps Server (TFS)', 'Git', 'GitFlow', 'NuGet', 'Microsoft Azure'],
+  'DevOps & Version Control': ['Git', 'GitFlow', 'Azure DevOps Server (TFS)', 'NuGet', 'Microsoft Azure'],
   'Testing & Tools': ['Unit Testing', 'Debugging', 'Root Cause Analysis', 'Claude Code', 'OpenAI Codex', 'GitHub Copilot'],
   Practices: ['Agile/Scrum', 'SDLC', 'Clean Architecture', 'Software Design', 'Requirements Gathering', 'Technical Documentation', 'Production Support'],
 };
