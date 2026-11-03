@@ -44,7 +44,9 @@ const ogImage = new URL('/og.png', Astro.site);
     <slot />
     <script>
       import { initMotion } from '../scripts/motion';
+      import { initTyping } from '../scripts/typing';
       initMotion();
+      initTyping();
     </script>
   </body>
 </html>

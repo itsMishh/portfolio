@@ -78,7 +78,9 @@ export const education = [
 
 export const projects = [
   {
+    slug: 'le-langue-buddy',
     name: 'LeLangueBuddy',
+    year: '2026',
     tagline: 'A personal French learning app: phrase dictionary, writing space, and a study streak.',
     description:
       'Full-stack app I built to practise French. A searchable phrase dictionary with browser speech pronunciation, a writing space with word counts and prompts, and a daily dashboard that tracks study streaks. Multi-user with sign-in, so every query is scoped to the signed-in account.',
@@ -87,6 +89,31 @@ export const projects = [
       'REST API over Postgres with per-user data isolation on every route.',
       'End-to-end API tests run against a throwaway database branch, so real data is never touched.',
       'Migrated from local SQLite to hosted Postgres and deployed serverless on Vercel.',
+    ],
+    features: [
+      'Phrase dictionary with search, inline editing and French pronunciation through the browser speech API.',
+      'Writing space with a daily prompt, live word count and Ctrl+S to save.',
+      'Today dashboard pulling the phrase of the day, the current streak and a weekly tracker.',
+      'Accounts with sign-in, password reset and email verification.',
+    ],
+    // Decisions worth defending in an interview, taken from the project's own log.
+    decisions: [
+      {
+        title: 'SQLite first, Postgres once it had to be shared',
+        body: 'It started on local SQLite because nothing needed a server. Going multi-user meant hosted Postgres, so I migrated the data with a one-time script and kept the old file as a backup.',
+      },
+      {
+        title: 'Tests run against a real database branch',
+        body: 'The end-to-end API tests run on a separate database branch that is emptied each run, with a guard that refuses to start if its connection string matches the real one. Real Postgres in tests means what passes is what ships.',
+      },
+      {
+        title: 'The study day comes from the browser',
+        body: 'The API runs in UTC, so a streak computed server-side would roll over at the wrong hour. The client sends its own local day instead, and the streak follows the person rather than the server.',
+      },
+      {
+        title: 'Counting in the database, not the client',
+        body: 'Pages were downloading every phrase and writing just to count them. Word counts became a generated column and the totals moved behind a stats endpoint.',
+      },
     ],
     status: 'Live',
     tags: ['REST APIs', 'Relational Database Design', 'Unit Testing', 'Git'],

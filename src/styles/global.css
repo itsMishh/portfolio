@@ -145,3 +145,44 @@ button:focus-visible {
 .js .js\:inline {
   display: inline;
 }
+
+/* Hero typing caret: a block that blinks while typing and rests after. */
+.caret {
+  display: none;
+}
+
+.js .caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background-color: var(--color-ash);
+  vertical-align: text-bottom;
+}
+
+.js .caret.is-typing {
+  animation: caret-blink 1s steps(1, end) infinite;
+}
+
+.js .caret.is-done {
+  animation: caret-blink 1.4s steps(1, end) infinite;
+  opacity: 0.5;
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .caret.is-typing,
+  .js .caret.is-done {
+    animation: none;
+    opacity: 0.5;
+  }
+}

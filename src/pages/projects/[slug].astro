@@ -1,0 +1,107 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectPreview from '../../components/ProjectPreview.astro';
+import { profile, projects } from '../../data/content';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const title = `${project.name} — ${profile.name}`;
+---
+
+<Base title={title} description={project.tagline}>
+  <div class="mx-auto max-w-2xl px-6 py-16 md:py-24">
+    <a href="/#projects" class="font-mono text-xs text-ash transition-opacity hover:opacity-70">← back to projects</a>
+
+    <header class="mt-6 mb-10">
+      <div class="flex flex-wrap items-baseline justify-between gap-3">
+        <h1 class="font-display text-6xl leading-none font-bold text-ink md:text-7xl">{project.name}</h1>
+        <span class="flex items-center gap-2 font-mono text-xs text-ash">
+          <span class="h-1.5 w-1.5 rounded-full bg-ink"></span>
+          {project.status} · {project.year}
+        </span>
+      </div>
+
+      <svg viewBox="0 0 400 6" class="mt-4 w-full max-w-md" preserveAspectRatio="none" aria-hidden="true">
+        <path
+          d="M0,3 C20,1 40,5 60,3 C80,1 100,5 120,3 C140,1 160,5 180,3 C200,1 220,5 240,3 C260,1 280,5 300,3 C320,1 340,5 360,3 C380,1 400,3 400,3"
+          stroke="#4A4844"
+          stroke-width="1.2"
+          fill="none"
+          stroke-linecap="round"
+        />
+      </svg>
+
+      <p class="mt-6 text-base leading-relaxed text-ink-light md:text-lg">{project.description}</p>
+
+      <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-sm border-[1.5px] border-ink bg-ink px-4 py-2 font-mono text-sm text-cream transition-opacity hover:opacity-80"
+        >
+          Open the app ↗
+        </a>
+        <p class="font-mono text-xs text-ash">Sign-in required — it holds real study data.</p>
+      </div>
+    </header>
+
+    <div class="mb-12 overflow-hidden rounded-sm border-[1.5px] border-dashed border-ash-light bg-cream-dark" data-reveal>
+      <div class="aspect-[16/9]">
+        {
+          project.image ? (
+            <img src={project.image} alt={project.imageAlt} class="h-full w-full object-cover object-top" />
+          ) : (
+            <ProjectPreview />
+          )
+        }
+      </div>
+    </div>
+
+    <section class="mb-12" data-reveal>
+      <h2 class="font-display text-3xl font-semibold text-ink">What it does</h2>
+      <ul class="mt-4 grid list-disc gap-2 pl-5 text-sm leading-relaxed text-ink-light marker:text-ash">
+        {project.features.map((feature) => <li>{feature}</li>)}
+      </ul>
+    </section>
+
+    <section class="mb-12" data-reveal>
+      <h2 class="font-display text-3xl font-semibold text-ink">Engineering notes</h2>
+      <ul class="mt-4 grid list-disc gap-2 pl-5 text-sm leading-relaxed text-ink-light marker:text-ash">
+        {project.highlights.map((highlight) => <li>{highlight}</li>)}
+      </ul>
+    </section>
+
+    <section class="mb-12" data-reveal>
+      <h2 class="font-display text-3xl font-semibold text-ink">Decisions, and why</h2>
+      <div class="mt-5 space-y-6">
+        {
+          project.decisions.map((decision, i) => (
+            <div class="border-l-[1.5px] border-dashed border-ash-light pl-4" style={`--i: ${i}`}>
+              <h3 class="text-base font-semibold text-ink">{decision.title}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-ink-light">{decision.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mb-12" data-reveal>
+      <h2 class="font-display text-3xl font-semibold text-ink">Built with</h2>
+      <div class="mt-4 flex flex-wrap gap-2">
+        {
+          project.stack.map((tech) => (
+            <span class="rounded-sm border-[1.5px] border-dashed border-ash-light px-2.5 py-1 text-xs text-ink">{tech}</span>
+          ))
+        }
+      </div>
+    </section>
+
+    <footer class="mt-8 border-t-[1.5px] border-dashed border-ash-light pt-8">
+      <a href="/#projects" class="font-mono text-xs text-ash transition-opacity hover:opacity-70">← back to projects</a>
+    </footer>
+  </div>
+</Base>

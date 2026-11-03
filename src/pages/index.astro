@@ -93,8 +93,8 @@ const str = 'text-ink';
     <span class={prop}>Location</span> = <span class={str}>"{profile.location}"</span>
 &#125;;  <span class={kw}>// open to software engineering roles</span>
 
-<span class={kw}>// off the clock: debugging French irregular verbs.</span>
-<span class={kw}>// the C# compiler is far more forgiving.</span></pre>
+<span class={kw} data-typed data-text="// off the clock: debugging French irregular verbs.">// off the clock: debugging French irregular verbs.</span>
+<span class={kw} data-typed data-text="// the C# compiler is far more forgiving.">// the C# compiler is far more forgiving.</span><span data-caret class="caret" aria-hidden="true"></span></pre>
         </div>
       </section>
 
@@ -125,9 +125,7 @@ const str = 'text-ink';
           {
             projects.map((project) => (
               <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/projects/${project.slug}`}
                 data-tags={project.tags.join('|')}
                 class="group flex flex-col overflow-hidden rounded-sm border-[1.5px] border-dashed border-ash-light bg-cream-dark transition-colors hover:border-ink"
               >
@@ -170,7 +168,7 @@ const str = 'text-ink';
                 </div>
 
                 <span class="mt-4 font-mono text-xs text-ink transition-opacity group-hover:opacity-70">
-                  {project.hrefLabel} <span class="inline-block transition-transform group-hover:translate-x-0.5">↗</span>
+                  Read the write-up <span class="inline-block transition-transform group-hover:translate-x-0.5">→</span>
                 </span>
                 </div>
               </a>
