@@ -15,6 +15,9 @@ const ogImage = new URL('/og.png', Astro.site);
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- Marks JS as available before first paint; every animation is scoped to .js,
+         so the page renders complete when scripts are off or fail. -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -39,5 +42,9 @@ const ogImage = new URL('/og.png', Astro.site);
   </head>
   <body class="min-h-screen">
     <slot />
+    <script>
+      import { initMotion } from '../scripts/motion';
+      initMotion();
+    </script>
   </body>
 </html>

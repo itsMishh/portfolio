@@ -13,15 +13,41 @@ export const experience = [
   {
     title: 'Software Developer · IIMSWISS Corp.',
     when: 'Jun 2025 – Present',
+    // `tags` name skills from `skills` below; clicking a skill chip highlights the
+    // bullets and projects carrying that tag.
     bullets: [
-      'Develop and maintain enterprise applications using C#, .NET, ASP.NET MVC and Microsoft SQL Server, delivering features end to end from requirements gathering through development, testing and production release.',
-      'Design and develop REST APIs and third-party integrations connecting internal enterprise systems with external financial and accounting platforms.',
-      'Modernize and enhance legacy applications using Clean Architecture and software design principles to improve maintainability and scalability and reduce technical debt.',
-      'Perform production support, incident analysis and troubleshooting, identifying root causes across application code, APIs and SQL Server data.',
-      'Develop, optimize and maintain SQL Server queries, stored procedures and relational database components to support application functionality and performance.',
-      'Write unit tests and use AI coding tools (Claude Code, OpenAI Codex, GitHub Copilot) to accelerate development, debugging and code reviews.',
-      'Collaborate in an Agile/Scrum environment using Git and GitFlow, including pull requests and code reviews.',
-      'Create and maintain technical documentation for application features, APIs, integrations and implementation processes.',
+      {
+        text: 'Develop and maintain enterprise applications using C#, .NET, ASP.NET MVC and Microsoft SQL Server, delivering features end to end from requirements gathering through development, testing and production release.',
+        tags: ['C#', '.NET', 'ASP.NET MVC', 'Microsoft SQL Server', 'SDLC', 'Requirements Gathering'],
+      },
+      {
+        text: 'Design and develop REST APIs and third-party integrations connecting internal enterprise systems with external financial and accounting platforms.',
+        tags: ['REST APIs', 'Web Services', '.NET', 'C#'],
+      },
+      {
+        text: 'Modernize and enhance legacy applications using Clean Architecture and software design principles to improve maintainability and scalability and reduce technical debt.',
+        tags: ['Clean Architecture', 'Software Design', 'C#', '.NET'],
+      },
+      {
+        text: 'Perform production support, incident analysis and troubleshooting, identifying root causes across application code, APIs and SQL Server data.',
+        tags: ['Production Support', 'Debugging', 'Root Cause Analysis', 'Microsoft SQL Server'],
+      },
+      {
+        text: 'Develop, optimize and maintain SQL Server queries, stored procedures and relational database components to support application functionality and performance.',
+        tags: ['Microsoft SQL Server', 'T-SQL', 'SQL (T-SQL)', 'Stored Procedures', 'Relational Database Design'],
+      },
+      {
+        text: 'Write unit tests and use AI coding tools (Claude Code, OpenAI Codex, GitHub Copilot) to accelerate development, debugging and code reviews.',
+        tags: ['Unit Testing', 'Claude Code', 'OpenAI Codex', 'GitHub Copilot', 'Debugging'],
+      },
+      {
+        text: 'Collaborate in an Agile/Scrum environment using Git and GitFlow, including pull requests and code reviews.',
+        tags: ['Agile/Scrum', 'Git', 'GitFlow'],
+      },
+      {
+        text: 'Create and maintain technical documentation for application features, APIs, integrations and implementation processes.',
+        tags: ['Technical Documentation', 'REST APIs'],
+      },
     ],
   },
 ];
@@ -63,6 +89,7 @@ export const projects = [
       'Migrated from local SQLite to hosted Postgres and deployed serverless on Vercel.',
     ],
     status: 'Live',
+    tags: ['REST APIs', 'Relational Database Design', 'Unit Testing', 'Git'],
     // Drop a screenshot at public/projects/ and set the path here to replace the drawn preview
     image: '',
     imageAlt: 'The LeLangueBuddy dashboard: daily prompt, phrase of the day and study streak.',

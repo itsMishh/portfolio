@@ -1,0 +1,35 @@
+---
+// Fixed section nav, desktop only. Real anchors, so it works without scripts;
+// motion.ts only adds the active state.
+interface Props {
+  items: { id: string; number: string; label: string }[];
+}
+const { items } = Astro.props;
+---
+
+<nav
+  data-side-rail
+  aria-label="Sections"
+  class="pointer-events-none fixed top-1/2 left-[max(1.5rem,calc(50%-34rem))] z-20 hidden -translate-y-1/2 xl:block"
+>
+  <ul class="pointer-events-auto flex flex-col gap-4">
+    {
+      items.map((item) => (
+        <li>
+          <a
+            href={`#${item.id}`}
+            class="group/rail flex items-center gap-3 text-ash transition-colors hover:text-ink [&.is-active]:text-ink"
+          >
+            <span class="relative flex h-2.5 w-2.5 shrink-0 items-center justify-center">
+              <span class="h-2 w-2 rounded-full border-[1.5px] border-current transition-colors group-[.is-active]/rail:bg-current" />
+            </span>
+            <span class="font-mono text-[11px] tracking-[0.14em]">{item.number}</span>
+            <span class="font-mono text-[11px] tracking-[0.1em] opacity-0 transition-opacity duration-200 group-hover/rail:opacity-100 group-[.is-active]/rail:opacity-100">
+              {item.label}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

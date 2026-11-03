@@ -2,11 +2,27 @@
 interface Props {
   number: string;
   label: string;
+  id?: string;
 }
-const { number, label } = Astro.props;
+const { number, label, id } = Astro.props;
 ---
 
 <div class="flex items-baseline gap-3">
   <span class="font-mono text-xs text-ash">{number}</span>
-  <h2 class="font-display text-3xl leading-none font-semibold text-ink md:text-4xl">{label}</h2>
+  <h2 id={id ? `${id}-heading` : undefined} class="font-display text-3xl leading-none font-semibold text-ink md:text-4xl">
+    {label}
+  </h2>
 </div>
+
+<!-- Draws itself in as the section reveals -->
+<svg viewBox="0 0 400 4" class="mt-2 w-full max-w-[260px]" preserveAspectRatio="none" aria-hidden="true">
+  <path
+    d="M0,2 C40,0.5 80,3.5 120,2 C160,0.5 200,3.5 240,2 C280,0.5 320,3.5 360,2 C380,1.2 400,2 400,2"
+    stroke="var(--color-ash-light)"
+    stroke-width="1.2"
+    fill="none"
+    stroke-linecap="round"
+    data-draw
+    style="--len: 420"
+  />
+</svg>
