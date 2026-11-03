@@ -49,3 +49,24 @@ export const education = [
     note: '',
   },
 ];
+
+export const projects = [
+  {
+    name: 'LeLangueBuddy',
+    tagline: 'A personal French learning app: phrase dictionary, writing space, and a study streak.',
+    description:
+      'Full-stack app I built to practise French. A searchable phrase dictionary with browser speech pronunciation, a writing space with word counts and prompts, and a daily dashboard that tracks study streaks. Multi-user with sign-in, so every query is scoped to the signed-in account.',
+    stack: ['React', 'Vite', 'Node.js', 'Express', 'PostgreSQL (Neon)', 'Neon Auth', 'Vercel'],
+    highlights: [
+      'REST API over Postgres with per-user data isolation on every route.',
+      'End-to-end API tests run against a throwaway database branch, so real data is never touched.',
+      'Migrated from local SQLite to hosted Postgres and deployed serverless on Vercel.',
+    ],
+    status: 'Live',
+    // Drop a screenshot at public/projects/ and set the path here to replace the drawn preview
+    image: '',
+    imageAlt: 'The LeLangueBuddy dashboard: daily prompt, phrase of the day and study streak.',
+    href: 'https://le-langue-buddy.vercel.app',
+    hrefLabel: 'Live site',
+  },
+];

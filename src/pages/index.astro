@@ -2,7 +2,8 @@
 import Base from '../layouts/Base.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Icon from '../components/Icon.astro';
-import { profile, experience, skills, education } from '../data/content';
+import ProjectPreview from '../components/ProjectPreview.astro';
+import { profile, experience, projects, skills, education } from '../data/content';
 
 const title = `${profile.name} — Software Developer (.NET)`;
 const description =
@@ -104,7 +105,73 @@ const str = 'text-ink';
       </section>
 
       <section class="mb-14">
-        <SectionHeading number="02" label="Skills" />
+        <SectionHeading number="02" label="Projects" />
+        <div class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {
+            projects.map((project) => (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex flex-col overflow-hidden rounded-sm border-[1.5px] border-dashed border-ash-light bg-cream-dark transition-colors hover:border-ink"
+              >
+                <div class="aspect-[16/9] overflow-hidden border-b-[1.5px] border-dashed border-ash-light bg-cream">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.imageAlt}
+                      loading="lazy"
+                      decoding="async"
+                      class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <div class="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]">
+                      <ProjectPreview />
+                    </div>
+                  )}
+                </div>
+
+                <div class="flex flex-1 flex-col p-5">
+                <div class="mb-2 flex items-baseline justify-between gap-3">
+                  <h3 class="text-base font-semibold text-ink">{project.name}</h3>
+                  <span class="flex shrink-0 items-center gap-1.5 font-mono text-xs text-ash">
+                    <span class="h-1.5 w-1.5 rounded-full bg-ink" />
+                    {project.status}
+                  </span>
+                </div>
+
+                <p class="text-sm leading-relaxed text-ink-light">{project.tagline}</p>
+
+                <div class="mt-4 flex flex-wrap gap-1.5">
+                  {project.stack.slice(0, 3).map((tech) => (
+                    <span class="rounded-sm border-[1.5px] border-dashed border-ash-light px-2 py-0.5 font-mono text-[11px] text-ash">
+                      {tech}
+                    </span>
+                  ))}
+                  {project.stack.length > 3 && (
+                    <span class="px-1 py-0.5 font-mono text-[11px] text-ash">+{project.stack.length - 3} more</span>
+                  )}
+                </div>
+
+                <span class="mt-4 font-mono text-xs text-ink transition-opacity group-hover:opacity-70">
+                  {project.hrefLabel} <span class="inline-block transition-transform group-hover:translate-x-0.5">↗</span>
+                </span>
+                </div>
+              </a>
+            ))
+          }
+
+          <div class="flex min-h-[220px] flex-col items-center justify-center gap-2 rounded-sm border-[1.5px] border-dashed border-ash-light p-5 text-center">
+            <svg width="28" height="28" viewBox="0 0 28 28" class="text-ash-light" aria-hidden="true">
+              <path d="M14 7v14M7 14h14" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-dasharray="3 2" />
+            </svg>
+            <p class="font-mono text-xs text-ash">More coming soon</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-14">
+        <SectionHeading number="03" label="Skills" />
         <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {
             Object.entries(skills).map(([category, items]) => (
@@ -124,7 +191,7 @@ const str = 'text-ink';
       </section>
 
       <section class="mb-14">
-        <SectionHeading number="03" label="Education & Credentials" />
+        <SectionHeading number="04" label="Education & Credentials" />
         <div class="mt-6 space-y-8">
           {
             education.map((e) => (
@@ -142,7 +209,7 @@ const str = 'text-ink';
       </section>
 
       <section class="mb-10">
-        <SectionHeading number="04" label="Reach me" />
+        <SectionHeading number="05" label="Reach me" />
         <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
           <button
             id="copy-email"
